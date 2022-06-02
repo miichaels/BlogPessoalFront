@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { eventNames } from 'process';
+import { Router } from '@angular/router';
 import { Usuario } from '../model/Usuario';
 import { AuthService } from '../service/auth.service';
 
@@ -15,10 +15,12 @@ export class CadastrarComponent implements OnInit {
   tipoUsuario: string
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    window.scroll(0,0)
   }
 
   confirmaSenha(event: any) {
@@ -36,7 +38,8 @@ export class CadastrarComponent implements OnInit {
     } else {
       this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
         this.usuario = resp
-        alert ('Usuario cadastrado com sucesso')
+        this.router.navigate(['/entrar'])
+        alert ('Usuario cadastrado com sucesso!')
       })
     }
   }
