@@ -1,3 +1,4 @@
+import { AuthService } from './service/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'BlogPessoalFront';
+  // title = 'BlogPessoalFront';
+
+  constructor(
+    public auth: AuthService
+  ){}
+
 }
