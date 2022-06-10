@@ -35,11 +35,11 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
 
-    if(environment.token == ''){
-      this.router.navigate(['/entrar'])
+    if(environment.token == '') {
+      this.router.navigate(['/entrar']);
     }
 
-    // this.auth.refreshToken(); 
+    this.authService.refreshToken(); 
     this.getAllTemas()
     this.getAllPostagens()
   }

@@ -63,10 +63,12 @@
                         <p class="card-text">
                             <small class="text-muted"> Por: {{ items.usuario.nome }} </small>
                         </p>
+
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="minhasPostagens-tab">
 
@@ -74,10 +76,17 @@
                 <div class="card text-center" *ngFor='let item of usuario.postagem'>
                     <div class="card-body">
                         <h5 class="card-title m-0">{{item.titulo}}</h5>
+                        <small class="text-muted">Tema: {{item.tema.descricao}}</small>
                         <p class="card-text mt-3">{{item.texto}}</p>
                         <p class="card-text"><small class="text-muted">
                                 {{item.data | date: 'dd/MM/yyyy' }} às {{item.data | date: 'HH:mm' }}
                             </small></p>
+
+                            <a [routerLink]="['/postagem-edit', item.id]" class="text-info mr-3" href="">Editar</a>
+                            <a [routerLink]="['/postagem-delete', item.id]" class="text-danger" href="">Apagar</a>
+
+
+
                     </div>
                 </div>
             </div>
@@ -110,7 +119,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -120,13 +129,12 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">
-                        Nova postagem
-                    </h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Nova postagem</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="titulo">Titulo</label>
@@ -136,8 +144,7 @@
 
                     <div class="form-group">
                         <label for="titulo">Texto</label>
-                        <textarea [(ngModel)]="postagem.texto" class="form-control" name="texto" id="texto"
-                            rows="3"></textarea>
+                        <textarea [(ngModel)]="postagem.texto" class="form-control" name="texto" id="texto" rows="3"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -145,20 +152,16 @@
                             <a data-dismiss="modal" routerLink="/tema">cadastre um novo</a>:</label>
                         <select name="tema" id="tema" class="form-control" [(ngModel)]="idTema"
                             (change)="findByIdTema()">
-                            <option *ngFor="let items of listaTemas" value="{{ items.id }} ">
-                                {{ items.descricao }}
+                            <option *ngFor="let items of listaTemas" value="{{items.id}}"> {{ items.descricao }}
                             </option>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        Cancelar
-                    </button>
-                    <button type="button" class="btn btn-success" (click)="publicar()" data-dismiss="modal">
-                        Publicar
-                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" (click)="publicar()" data-dismiss="modal">Publicar</button>
                 </div>
+                
             </div>
         </div>
     </div>
